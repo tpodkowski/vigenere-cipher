@@ -39,16 +39,6 @@ class Site {
         this.printOutput();
       });
 
-    // this.fileInput
-    // 	.addEventListener('change', (e) => {
-    // 		console.log(e);
-    // 	});
-
-    // this.saveButton
-    // 	.addEventListener('click', (e) => {
-    // 		this.saveToFile();
-    // 	});
-
     this.encryptCheckbox
       .addEventListener('change', (e) => {
         this.printOutput();
