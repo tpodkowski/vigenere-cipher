@@ -26,7 +26,7 @@ class Site {
         this.alphabeth = e.target.value;
         this.printOutput();
       });
-      
+
     this.passphraseInput
       .addEventListener('keyup', (e) => {
         this.passphrase = e.target.value;
@@ -58,60 +58,64 @@ class Site {
       .addEventListener('change', (e) => {
         this.printOutput();
       });
-      
-      this.printOutput();
-  }
-  
-  printOutput() {
-    const outputElement = document.querySelector(".output");
-    
-    outputElement.innerText = this.encryptCheckbox.checked
-      ? this.encrypt()
-      : this.decrypt();
+
+    this.printOutput();
   }
 
-  saveToFile() {
-    const output = document.querySelector(".output").innerText;
-    const file = new Blob([output], { type: 'plain/text' });
-    console.log('output', file);
+  printOutput() {
+    const outputElement = document.querySelector(".output");
+
+    outputElement.innerText = this.encryptCheckbox.checked
+    ? this.encrypt()
+    : this.decrypt();
   }
-  
+
   encrypt() {
     const passwordArray = this.getPasswordArray();
 
     return Array.from(this.message)
-            .map((letter, letterIndex) => {
-              const messageIndex = this.alphabeth.indexOf(this.message[letterIndex]);
-              const passphraseIndex = this.alphabeth.indexOf(passwordArray[letterIndex]);
-              const shift = (messageIndex + passphraseIndex) % this.alphabeth.length; 
+      .map((letter, letterIndex) => {
+        const messageIndex = this.alphabeth.indexOf(letter);
+        const passphraseIndex = this.alphabeth.indexOf(passwordArray[letterIndex]);
+        const shift = (messageIndex + passphraseIndex) % this.alphabeth.length;
 
-              return this.alphabeth[shift];
-            }).join('');
+        return this.alphabeth[shift];
+      }).join('');
   }
 
   decrypt() {
     const passwordArray = this.getPasswordArray();
 
     return Array.from(this.message)
-            .map((letter, letterIndex) => {
-              const messageIndex = this.alphabeth.indexOf(this.message[letterIndex]);
-              const passphraseIndex = this.alphabeth.indexOf(passwordArray[letterIndex]);
-              const shift = (messageIndex + passphraseIndex) % this.alphabeth.length; 
-              
-              return this.alphabeth[shift];
-            }).join('');
+      .map((letter, letterIndex) => {
+        const messageIndex = this.alphabeth.indexOf(letter);
+        const passphraseIndex = this.alphabeth.indexOf(passwordArray[letterIndex]);
+        const shift = messageIndex >= passphraseIndex
+          ? messageIndex - passphraseIndex
+          : this.alphabeth.length - Math.abs(messageIndex - passphraseIndex) % this.alphabeth.length;
+
+        return this.alphabeth[shift];
+      }).join('');
   }
 
   getPasswordArray() {
     return Array.from(this.message)
-            .reduce((arr, letter, index) => {
-              return [
-                ...arr,
-                this.passphrase[index % this.passphrase.length],
-              ]
-            }, [])
-            .join('')
-            .toUpperCase();
+      .reduce((arr, letter, index) => {
+        return [
+          ...arr,
+          this.passphrase[index % this.passphrase.length],
+        ]
+      }, [])
+      .join('')
+      .toUpperCase();
+  }
+
+  saveToFile() {
+    const output = document.querySelector(".output").innerText;
+    const file = new Blob([output], {
+      type: 'plain/text'
+    });
+    console.log('output', file);
   }
 }
 
