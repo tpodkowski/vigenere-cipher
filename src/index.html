@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<link href="css/app.css" rel="stylesheet">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+  </head>
+	<body>
+		<div class="text-center">
+			<h1>Vigenére Cipher</h1>
+		</div>
+
+		<div class="row">
+			<label>Alphabeth:</label>
+			<input type="text" class="input__alphabeth" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+		</div>
+		<div class="row row__inline">
+			<div class="row">
+				<label for="encrypt">Encrypt:</label>
+				<input type="radio" name="method" id="encrypt" checked>
+			</div>
+			<div class="row">
+				<label for="decrypt">Decrypt:</label>
+				<input type="radio" name="method" id="decrypt">
+			</div>
+		</div>
+		<div class="row ">
+			<label>Message:</label>
+			<div class="row row__inline">
+				<textarea class="input__message">JUTRO POD POMNIKIEM</textarea>	
+			</div>
+			<!-- <div class="row">
+				<input type="file" class="input__message-file">
+			</div> -->
+		</div>
+		<div class="row">
+			<label>Passphrase:</label>
+			<input type="text" class="input__passphrase" value="MARS">
+		</div>
+		<div class="row">
+			<label>
+				<strong>Result:</strong>
+			</label>
+			<pre class="output"></pre>
+			<!-- <button class="button__save">
+				<i class="fas fa-4x fa-save"></i>
+			</button> -->
+		</div>	
+		
+		<script src="js/app.js"></script>
+	</body>
+</html>

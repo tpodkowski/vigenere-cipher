@@ -1,0 +1,55 @@
+html,
+body {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-direction: column;
+  margin: 0;
+  padding: 20px;
+  background: #fafafa;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.output {
+  display: block;
+  padding: 30px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  background: #FFF;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.row {
+
+  &__inline {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+.button{
+  &__save {
+    border-radius: 5px;
+    cursor: pointer;
+    background: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+textarea,
+input {
+  width: 100%;
+  min-width: 100%;
+  margin: 5px 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
