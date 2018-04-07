@@ -65,9 +65,9 @@ class Site {
   printOutput() {
     const outputElement = document.querySelector(".output");
 
-    outputElement.innerText = this.encryptCheckbox.checked ?
-      this.encrypt() :
-      this.decrypt();
+    outputElement.innerText = this.encryptCheckbox.checked
+    ? this.encrypt()
+    : this.decrypt();
   }
 
   encrypt() {
@@ -75,7 +75,7 @@ class Site {
 
     return Array.from(this.message)
       .map((letter, letterIndex) => {
-        const messageIndex = this.alphabeth.indexOf(this.message[letterIndex]);
+        const messageIndex = this.alphabeth.indexOf(letter);
         const passphraseIndex = this.alphabeth.indexOf(passwordArray[letterIndex]);
         const shift = (messageIndex + passphraseIndex) % this.alphabeth.length;
 
@@ -88,9 +88,11 @@ class Site {
 
     return Array.from(this.message)
       .map((letter, letterIndex) => {
-        const messageIndex = this.alphabeth.indexOf(this.message[letterIndex]);
+        const messageIndex = this.alphabeth.indexOf(letter);
         const passphraseIndex = this.alphabeth.indexOf(passwordArray[letterIndex]);
-        const shift = (messageIndex + passphraseIndex) % this.alphabeth.length;
+        const shift = messageIndex >= passphraseIndex
+          ? messageIndex - passphraseIndex
+          : this.alphabeth.length - Math.abs(messageIndex - passphraseIndex) % this.alphabeth.length;
 
         return this.alphabeth[shift];
       }).join('');
